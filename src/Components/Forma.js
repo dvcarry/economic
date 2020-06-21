@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
-import { Form, Input, Select } from 'antd'
-import { dataTables } from '../Data/Tables'
+import { Form, Input, Select, InputNumber } from 'antd'
+import { dataTables, selectValues } from '../Data/Tables'
 const { Option } = Select;
 
 export const Forma = ({ type, onChange, fields, modal }) => {
@@ -21,7 +21,8 @@ export const Forma = ({ type, onChange, fields, modal }) => {
                         inside = (
                             <Input
                                 name={item.name}
-                                placeholder={item.placeholder}
+                                size='large'
+                                allowClear   
                             />
                         )
                         break;
@@ -33,6 +34,33 @@ export const Forma = ({ type, onChange, fields, modal }) => {
                             </Select>
                         )
                         break;
+                    case 'select':                        
+                        const options = selectValues[item.typeofselect].map(item => {
+                            return (
+                                <Option key={item.value} value={item.name}>{item.name}</Option>
+                            )
+                        })
+
+                        inside = (
+                            <Select
+                            size='large'
+                            >
+                                {options}
+                            </Select>
+                        )
+                        break;
+                    case 'number':
+                        inside = (
+                            <InputNumber
+                                type='number'
+                                size="large"
+                                style={{ width: 150 }}
+                                min={0}
+                                name={item.name}
+                                // placeholder={item.placeholder}
+                            />
+                        )
+                        break;
                     default:
                         break;
                 }
@@ -41,6 +69,8 @@ export const Forma = ({ type, onChange, fields, modal }) => {
                     <Form.Item
                         name={item.name}
                         key={item.name}
+                        label={item.label}
+                        rules={[{ required: true }]}
                     >
                         {inside}
 
@@ -74,6 +104,8 @@ export const Forma = ({ type, onChange, fields, modal }) => {
             name='forma'
             fields={fields}
             form={form}
+            layout='vertical'
+            validateTrigger='onChange'
             onFieldsChange={(changedFields, allFields) => {
                 onChange(allFields);
             }}

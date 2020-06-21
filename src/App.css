@@ -1,5 +1,14 @@
 body {
-  max-width: 1000px;
+  max-width: 1200px;
   margin: 100px auto;
   overflow-y: visible !important;
+}
+
+.App {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.ant-modal-footer {
+  text-align: left;
 }

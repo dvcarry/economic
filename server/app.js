@@ -9,19 +9,19 @@ app.use('/items', require('./routes/items.routes'))
 
 const PORT = config.get('port') || 5000
 
-app.post('/item', async (req, res) => {  
-    try {       
+app.post('/item', async (req, res) => {
+    try {
         const newItem = req.body
         db.getDB().collection('item').insertOne(newItem, (err, result) => {
             if (err) {
-                console.log(err)  
-            }   else {
+                console.log(err)
+            } else {
                 // res.json({result : result, document : result.ops[0],msg : "Successfully inserted Todo!!!",error : null});
                 res.json(result.ops[0]._id);
-            }         
+            }
         })
     } catch (error) {
-        res.status(500).json({message: 'Wrong'})
+        res.status(500).json({ message: 'Wrong' })
     }
 })
 
@@ -34,6 +34,34 @@ app.get('/item', (req, res) => {
         else {
             res.json(documents);
         }
+    });
+});
+
+app.put('/item/:id', (req, res) => {
+    // Primary Key of Todo Document we wish to update
+    const todoID = req.params.id;
+    // Document used to update
+    const userInput = req.body;
+    // Find Document By ID and Update
+    db.getDB().collection('item').findOneAndUpdate({ _id: db.getPrimaryKey(todoID) }, { $set: userInput }, { returnOriginal: false }, (err, result) => {
+        // db.getDB().collection('item').findOneAndUpdate({ _id: db.getPrimaryKey(todoID) }, { $set: { todo: userInput.todo } }, { returnOriginal: false }, (err, result) => {
+        if (err)
+            console.log(err);
+        else {
+            res.json(result);
+        }
+    });
+});
+
+app.delete('/item/:id', (req, res) => {
+    // Primary Key of Todo Document
+    const todoID = req.params.id;
+    // Find Document By ID and delete document from record
+    db.getDB().collection('item').findOneAndDelete({ _id: db.getPrimaryKey(todoID) }, (err, result) => {
+        if (err)
+            console.log(err);
+        else
+            res.json(result);
     });
 });
 

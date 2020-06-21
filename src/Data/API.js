@@ -22,4 +22,24 @@ export const addItem = async item => {
     }
 }
 
+export const editItem = async (cardId, fields) => {
+    console.log('edit')
+    try {
+        const { data } = await Axios.put('item/' + cardId, fields)
+        return data
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+export const deleteItem = async cardId => {
+    console.log('delete')
+    try {
+        await Axios.delete('item/' + cardId)
+        // return data
+    } catch (error) {
+        console.log(error)
+    }
+}
+
 
