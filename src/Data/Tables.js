@@ -1,7 +1,10 @@
+import { names } from './names'
+
 export const dataTables = [
     {
-        name: 'product',
+        name: names.types.product,
         title: 'Продукт',
+        desc: 'Указывается все продукты, которые могут быть ',
         status: true,
         fields: [
             { name: 'name', type: 'input', label: 'Название продукта' },
@@ -10,8 +13,9 @@ export const dataTables = [
         ]
     },
     {
-        name: 'kpi',
+        name: names.types.kpi,
         title: 'Показатели',
+        desc: 'Указывается все продукты, которые могут быть ',
         status: true,
         fields: [
             { name: 'name', type: 'select', typeofselect: 'kpi', label: 'Показатель' },
@@ -19,8 +23,9 @@ export const dataTables = [
         ]
     },
     {
-        name: 'traffic',
+        name: names.types.traffic,
         title: 'Трафик',
+        desc: 'Указывается все продукты, которые могут быть ',
         status: true,
         fields: [
             { name: 'name', type: 'input', label: 'Название канала привлечения' },
@@ -29,8 +34,9 @@ export const dataTables = [
         ]
     },
     {
-        name: 'vcost',
+        name: names.types.vcost,
         title: 'Переменные расходы',
+        desc: 'Указывается все продукты, которые могут быть ',
         status: true,
         fields: [
             { name: 'name', type: 'input', label: 'Название' },
@@ -40,14 +46,13 @@ export const dataTables = [
         ]
     },
     {
-        name: 'pcost',
+        name: names.types.pcost,
         title: 'Постоянные расходы',
+        desc: 'Указывается всеазывается все продукты, которые могу продукты, которые могут азывазывается все продукты, которые могуается все продукты, которые могубыть ',
         status: true,
         fields: [
             { name: 'name', type: 'input', label: 'Название' },
-            { name: 'vcostdep', type: 'select', typeofselect: 'vcostdeps', label: 'От чего считается' },
-            { name: 'vcostdeps', type: 'select', typeofselect: 'vcostdep', label: 'Измерение' },
-            { name: 'food', type: 'number', label: 'Количество' },
+            { name: 'value', type: 'number', label: 'Сумма за месяц' },
         ]
     }
 

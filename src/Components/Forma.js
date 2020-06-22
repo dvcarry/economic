@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { Form, Input, Select, InputNumber } from 'antd'
+import { Form, Input, Select, InputNumber, Button } from 'antd'
 import { dataTables, selectValues } from '../Data/Tables'
 const { Option } = Select;
 
@@ -22,7 +22,7 @@ export const Forma = ({ type, onChange, fields, modal }) => {
                             <Input
                                 name={item.name}
                                 size='large'
-                                allowClear   
+                                allowClear
                             />
                         )
                         break;
@@ -34,7 +34,7 @@ export const Forma = ({ type, onChange, fields, modal }) => {
                             </Select>
                         )
                         break;
-                    case 'select':                        
+                    case 'select':
                         const options = selectValues[item.typeofselect].map(item => {
                             return (
                                 <Option key={item.value} value={item.name}>{item.name}</Option>
@@ -43,7 +43,7 @@ export const Forma = ({ type, onChange, fields, modal }) => {
 
                         inside = (
                             <Select
-                            size='large'
+                                size='large'
                             >
                                 {options}
                             </Select>
@@ -57,7 +57,7 @@ export const Forma = ({ type, onChange, fields, modal }) => {
                                 style={{ width: 150 }}
                                 min={0}
                                 name={item.name}
-                                // placeholder={item.placeholder}
+                            // placeholder={item.placeholder}
                             />
                         )
                         break;
@@ -99,13 +99,15 @@ export const Forma = ({ type, onChange, fields, modal }) => {
         form.setFieldsValue(fields)
     }, [modal])
 
+
     return (
         <Form
             name='forma'
             fields={fields}
             form={form}
             layout='vertical'
-            validateTrigger='onChange'
+            // validateTrigger='onChange'
+            hideRequiredMark
             onFieldsChange={(changedFields, allFields) => {
                 onChange(allFields);
             }}

@@ -3,7 +3,6 @@ import Axios from 'axios'
 Axios.defaults.baseURL = 'http://localhost:3000/';
 
 export const getItems = async () => {
-    console.log('get')
     try {
         const { data } = await Axios.get('item')
         return data
@@ -13,7 +12,7 @@ export const getItems = async () => {
 }
 
 export const addItem = async item => {
-    console.log('put')
+
     try {
         const { data } = await Axios.post('item', item)
         return data
@@ -23,7 +22,7 @@ export const addItem = async item => {
 }
 
 export const editItem = async (cardId, fields) => {
-    console.log('edit')
+
     try {
         const { data } = await Axios.put('item/' + cardId, fields)
         return data
@@ -33,7 +32,7 @@ export const editItem = async (cardId, fields) => {
 }
 
 export const deleteItem = async cardId => {
-    console.log('delete')
+
     try {
         await Axios.delete('item/' + cardId)
         // return data
