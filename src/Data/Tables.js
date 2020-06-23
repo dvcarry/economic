@@ -9,7 +9,8 @@ export const dataTables = [
         fields: [
             { name: 'name', type: 'input', label: 'Название продукта' },
             { name: 'price', type: 'number', label: 'Стоимость' },
-            { name: 'currency', type: 'currency', label: 'Валюта' },
+            { name: 'share', type: 'percent', label: 'Доля от клиентов' },
+            { name: 'payments', type: 'number', label: 'Среднее количество сделок на клиента' },
         ]
     },
     {
@@ -18,8 +19,9 @@ export const dataTables = [
         desc: 'Указывается все продукты, которые могут быть ',
         status: true,
         fields: [
-            { name: 'name', type: 'select', typeofselect: 'kpi', label: 'Показатель' },
-            { name: 'indicator', type: 'number', label: 'Значение' }
+            { name: 'name', type: 'input', label: 'Название' },
+            { name: 'typeconversion', type: 'select', typeofselect: 'kpi', label: 'Тип конверсии' },
+            { name: 'value', type: 'percent', label: 'Значение' }
         ]
     },
     {
@@ -42,12 +44,12 @@ export const dataTables = [
             { name: 'name', type: 'input', label: 'Название' },
             { name: 'vcostdep', type: 'select', typeofselect: 'vcostdeps', label: 'От чего считается' },
             { name: 'vcostdeps', type: 'select', typeofselect: 'vcostdep', label: 'Измерение' },
-            { name: 'food', type: 'number', label: 'Количество' },
+            { name: 'value', type: 'number', label: 'Количество' },
         ]
     },
     {
         name: names.types.pcost,
-        title: 'Постоянные расходы',
+        title: names.titles.pcost,
         desc: 'Указывается всеазывается все продукты, которые могу продукты, которые могут азывазывается все продукты, которые могуается все продукты, которые могубыть ',
         status: true,
         fields: [
@@ -60,10 +62,8 @@ export const dataTables = [
 
 export const selectValues = {
     kpi: [
-        {name: 'Конверсия в регистрацию', value: 'C1' },
-        {name: 'Конверсия в покупку', value: 'C2' },
-        {name: 'Конверсия в конверсию', value: 'C3' },
-
+        {name: 'Единая конверсия в покупку', value: 'C1' },
+        {name: 'Составная конверсия в покупку', value: 'C2' },
     ],
     vcostdep: [
         {name: 'проценты', value: 'percent'},

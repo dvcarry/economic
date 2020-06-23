@@ -6,9 +6,19 @@ export const names = {
         product: 'product',
         traffic: 'traffic'
     },
+    titles: {
+        pcost: 'Постоянные расходы',
+        vcost: 'vcost',
+        kpi: 'kpi',
+        product: 'product',
+        traffic: 'traffic'  
+    },
     kpi: {
-        c1: 'Конверсия в регистрацию',
-        c2: 'Конверсия в покупку',
-        c3: 'Конверсия в конверсию',
+        c1: 'Единая конверсия в покупку',
+        c2: 'Составная конверсия в покупку'
+    },
+    cogs: {
+        percent: 'проценты',
+        sum: 'сумма'
     }
 } 

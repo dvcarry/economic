@@ -61,35 +61,72 @@ export const Forma = ({ type, onChange, fields, modal }) => {
                             />
                         )
                         break;
-                    default:
+                    case 'percent':
+                        inside = (
+                            <InputNumber
+                                // defaultValue={5}
+                                type='number'
+                                size="large"
+                                style={{ width: 150 }}
+                                min={0}
+                                max={100}
+                                step={0.1}
+                                name={item.name}
+                            // placeholder={item.placeholder}
+                            />
+                        )
+                        break;
+
+                    // case 'dependent':
+                    //     inside = (
+
+                    //         ({ getFieldValue }) =>
+                    //         getFieldValue('gender') === 'other' ? (
+                    //           <Form.Item
+                    //             name="customizeGender"
+                    //             label="Customize Gender"
+                    //             rules={[
+                    //               {
+                    //                 required: true,
+                    //               },
+                    //             ]}
+                    //           >
+                    //           <InputNumber
+                    //           type='number'
+                    //           size="large"
+                    //           style={{ width: 150 }}
+                    //           min={0}
+                    //           max={100}
+                    //           step={0.1}
+                    //           name={item.name}
+                    //       />
+                    //           </Form.Item>
+                    //         ) : null
+                            
+                            
+                            
+
+                    //     )
+                    //     break;
+                    
+                        default:
                         break;
                 }
 
-                return (
+                return (                    
                     <Form.Item
                         name={item.name}
                         key={item.name}
                         label={item.label}
                         rules={[{ required: true }]}
+                        shouldUpdate={item.type === 'dependent' ? (prevValues, currentValues) => prevValues.gender !== currentValues.gender : false}
                     >
                         {inside}
 
                     </Form.Item>
                 )
-            }
-            )
-        // .map(item => (
-        //     <Form.Item
-        //         name={item.name}
-        //         key={item.name}
-        //     >
-        //         <Input
-        //             name={item.name}
-        //             placeholder={item.placeholder}
-        //         />
-        //     </Form.Item>
-        // )
-        // )
+            })
+
     }
 
     useEffect(() => {

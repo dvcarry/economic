@@ -131,6 +131,9 @@ export const DataForm = () => {
         })
     }
 
+    console.log(fields)
+    console.log(cards)
+
     return (
         <>
             <Tabs tabPosition='left'>
