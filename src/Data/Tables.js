@@ -42,8 +42,7 @@ export const dataTables = [
         status: true,
         fields: [
             { name: 'name', type: 'input', label: 'Название' },
-            { name: 'vcostdep', type: 'select', typeofselect: 'vcostdeps', label: 'От чего считается' },
-            { name: 'vcostdeps', type: 'select', typeofselect: 'vcostdep', label: 'Измерение' },
+            { name: 'vcostdep', type: 'select', typeofselect: 'vcostdep', label: 'От чего считается' },
             { name: 'value', type: 'number', label: 'Количество' },
         ]
     },
@@ -66,14 +65,12 @@ export const selectValues = {
         {name: 'Составная конверсия в покупку', value: 'C2' },
     ],
     vcostdep: [
-        {name: 'проценты', value: 'percent'},
-        {name: 'сумма', value: 'number'},
+        {name: 'Процент от входящих денег', value: 'percent'},
+        {name: 'Сумма за каждый заказ', value: 'sum'},
+        {name: 'Процент за первый заказ', value: 'percenfirstorder'},
+        {name: 'Сумма за первый заказ', value: 'sumfirstorder'},
     ],
-    vcostdeps: [
-        {name: 'выручка', value: 'revenu'},
-        {name: 'заказ', value: 'order'},
-        {name: 'лид', value: 'lead'},
-    ],
+
 }
 
 export const tablesForTabs = dataTables.filter(item => item.status)

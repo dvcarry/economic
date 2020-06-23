@@ -5,7 +5,6 @@ export const clientsSum = cards => {
 }
 
 export const sumOfValuesByType = (cards, type) => {
-    console.log('sum', cards, type)
     return cards.filter(item => item.type === type).reduce((acc, cur) => acc + cur.value, 0)
 }
 

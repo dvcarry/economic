@@ -113,6 +113,7 @@ export const DataForm = () => {
         cardsItems = cards.map(item => {
 
             const filteredItem = Object.entries(item).filter(el => el[0] !== '_id' && el[0] !== 'type' && el[0] !== 'name')
+            console.log({filteredItem})
             const description = filteredItem.map(el => <span key={el[0]}>{el[1]}</span>)
 
             return (
@@ -132,7 +133,7 @@ export const DataForm = () => {
     }
 
     console.log(fields)
-    console.log(cards)
+    console.log({cards})
 
     return (
         <>
