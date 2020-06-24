@@ -22,7 +22,7 @@ export const sumOfValuesByType = (cards, type) => cards.filter(item => item.type
 export const formulas = {
     pcostsum: {
         title: 'Постоянные расходы',
-        value: cards => sumOfValuesByType(cards, names.types.pcost)
+        value: cards => cards.filter(item => item.type === names.types.pcost).reduce((acc, cur) => acc + cur.value, 0)
     },
     ac: {
         title: 'Маркетинговый бюджет',
@@ -50,6 +50,7 @@ export const formulas = {
 
     cogs: {
         title: 'Переменные затраты',
+        desc: 'Это разные затраты',
         value: cards => cards.filter(item => item.type === names.types.vcost).reduce((acc, cur) => {
             switch (cur.vcostdep) {
                 case names.cogs.percent:
@@ -77,14 +78,14 @@ export const formulas = {
             let cardsWithKpi = cards.filter(item => item.type === names.types.kpi)
 
             if (cardsWithKpi.find(item => item.typeconversion === names.kpi.c1)) {
-                return cards.find(item => item.typeconversion === names.kpi.c1).value
+                return cards.find(item => item.typeconversion === names.kpi.c1).percent
             }
 
             if (cardsWithKpi.filter(item => item.typeconversion === names.kpi.c2).length > 0) {
-                return cardsWithKpi.filter(item => item.typeconversion === names.kpi.c2).reduce((a, b) => a * b.value * 0.01, 1)
+                return cardsWithKpi.filter(item => item.typeconversion === names.kpi.c2).reduce((a, b) => a * b.percent * 0.01, 1)
             }
 
-            return 'нет данных'
+            // return 'нет данных'
              
         }
     },
@@ -131,6 +132,7 @@ export const formulas = {
     },
     revenueperclient: {
         title: names.formulas.revenueperclient,
+        desc: 'Это разные затраты',
         value: cards => Math.round(formulas.revenue.value(cards) / formulas.sumofclients.value(cards))
     },
     cogsperclient: {

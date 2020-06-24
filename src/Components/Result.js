@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { List, Tabs } from 'antd';
+import { List, Tabs, Popover } from 'antd';
 import { clientsSum, getValue, sumOfValuesByType, formulas } from '../Data/Formulas';
 import { names } from './../Data/names'
 import { getStateOfSumByType, getStateWithNewValue } from '../Data/Helpers';
@@ -7,19 +7,6 @@ import { getStateOfSumByType, getStateWithNewValue } from '../Data/Helpers';
 const { TabPane } = Tabs;
 
 export const Result = ({ cards }) => {
-
-    // const initialData = [
-    //     {
-    //         type: 'revenue',
-    //         title: 'Выручка',
-    //         value: 0
-    //     },
-    //     {
-    //         type: names.types.pcost,
-    //         title: names.titles.pcost,
-    //         value: 0
-    //     },
-    // ]
 
     const data = [
         // formulas.vcostsum, 
@@ -61,8 +48,20 @@ export const Result = ({ cards }) => {
                 names.formulas.revenue,
                 names.formulas.cogs,
                 names.formulas.ac,
-                names.formulas.gross,
-                // names.formulas.revenue,
+                names.formulas.pcostsum,
+                names.formulas.gross,                
+
+            ]
+        },
+        {
+            title: 'Каналы продаж',
+            name: 'channels',
+            fields: [
+                names.formulas.revenue,
+                names.formulas.cogs,
+                names.formulas.ac,
+                names.formulas.pcostsum,
+                names.formulas.gross,                
 
             ]
         }
@@ -87,7 +86,7 @@ export const Result = ({ cards }) => {
 
     }, [cards])
 
-    console.log({results})
+    // console.log({ results })
 
     return (
         <div className='results'>
@@ -103,13 +102,28 @@ export const Result = ({ cards }) => {
                         <TabPane tab={item.title} key={item.name}>
                             <List
                                 dataSource={item.fields}
-                                // renderItem={el => <List.Item><List.Item.Meta title={el} /><div>{results.find(result => result.title === el).value}</div></List.Item>}                               
 
-                                renderItem={el => <List.Item><List.Item.Meta title={el} /><div>{
-                                    results.find(result => {                                
-                                    return result.title === el
-                                }).value.toLocaleString('ru')
-                                }</div></List.Item>}
+                                renderItem={el => {
+
+                                    // console.log(el)
+
+                                    const listItem = results.find(result => result.title === el).value
+                                    const classes = listItem < 0 ? 'minus' : ''
+                                    const description = data.find(item => item.title === el).desc
+
+                                    return (
+                                        <List.Item>
+                                            <Popover title={el} content={description} trigger="click">
+                                                <List.Item.Meta title={el} />
+                                            </Popover>
+
+                                            <div className={classes}>                                                
+                                                {listItem ? listItem.toLocaleString('ru') : 'нет данных'}
+                                            </div>
+                                        </List.Item>
+                                    )
+
+                                }}
                             />
                         </TabPane>
                     ))

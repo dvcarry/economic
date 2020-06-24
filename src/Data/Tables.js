@@ -21,7 +21,7 @@ export const dataTables = [
         fields: [
             { name: 'name', type: 'input', label: 'Название' },
             { name: 'typeconversion', type: 'select', typeofselect: 'kpi', label: 'Тип конверсии' },
-            { name: 'value', type: 'percent', label: 'Значение' }
+            { name: 'percent', type: 'percent', label: 'Значение' }
         ]
     },
     {
@@ -54,6 +54,19 @@ export const dataTables = [
         fields: [
             { name: 'name', type: 'input', label: 'Название' },
             { name: 'value', type: 'number', label: 'Сумма за месяц' },
+        ]
+    },
+    {
+        name: names.types.sells,
+        title: names.titles.sells,
+        desc: 'Указывается всеазывается все продукты, которые могу продукты, которые могут азывазывается все продукты, которые могуается все продукты, которые могубыть ',
+        status: true,
+        fields: [
+            { name: 'name', type: 'input', label: 'Название' },
+            { name: 'sell_managers', type: 'number', label: 'Количество коллеров' },
+            { name: 'sell_calls', type: 'number', label: 'Количество звонков в месяц' },
+            { name: 'sell_conv', type: 'percent', label: 'Конверсия в оплату' },
+            { name: 'sell_cost', type: 'percent', label: 'Затраты на одного менеджера в месяц' },
         ]
     }
 

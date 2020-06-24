@@ -11,6 +11,7 @@ function App() {
       <div className="App">
         <Menu />
         <div className="wrapper">
+          <h2>Входные данные</h2>
           <DataForm />
           {/* <Result /> */}
         </div>

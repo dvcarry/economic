@@ -7,6 +7,8 @@ import { Forma } from '../Forma';
 import { fieldsToItem, itemToFields } from '../../Data/Helpers';
 import { getItems, addItem, editItem, deleteItem } from '../../Data/API';
 import { Result } from '../Result';
+import { units } from './../../Data/units'
+import {calcErrors} from './../../Data/errors'
 
 const { TabPane } = Tabs;
 
@@ -113,15 +115,15 @@ export const DataForm = () => {
         cardsItems = cards.map(item => {
 
             const filteredItem = Object.entries(item).filter(el => el[0] !== '_id' && el[0] !== 'type' && el[0] !== 'name')
-            console.log({filteredItem})
-            const description = filteredItem.map(el => <span key={el[0]}>{el[1]}</span>)
+            // console.log({filteredItem})
+            const description = filteredItem.map(el => <span key={el[0]}>{el[1]}{units[el[0]]}</span>)
 
             return (
                 <Card
                     size="small"
                     type="inner"
                     hoverable
-                    style={{ width: 300, marginTop: 16 }}
+                    // style={{ width: 300, marginTop: 16 }}
                     title={item.name}
                     key={item._id}
                     onClick={() => openCard(item)}
@@ -132,19 +134,36 @@ export const DataForm = () => {
         })
     }
 
-    console.log(fields)
+    let deleteButton = null
+
+    if (history.location.pathname !== '/create') {
+        deleteButton = (
+        <Button key="delete" type="link" danger onClick={handleDelete}>Удалить</Button>
+        )
+    }
+
+
+
+    let errors = null
+    // if (cards)
+    errors = calcErrors(cards) ? <Alert message={calcErrors(cards)} type="error"/> : null 
+    console.log('errors', calcErrors(cards))
+
+    // console.log(fields)
     console.log({cards})
 
     return (
         <>
-            <Tabs tabPosition='left'>
+            <Tabs tabPosition='top'>
                 {
                     tablesForTabs.map(item => (
                         <TabPane tab={item.title} key={item.name}>
-                            <h3>{item.title}</h3>
-                            <p>{item.desc}</p>
-                            <hr width="200px" align='left'/>
-                            <Button type="primary" onClick={() => showModal(item.name)}>Add</Button>
+                            {errors}
+                            {/* <h3>{item.title}</h3> */}
+                            {/* <p>{item.desc}</p> */}
+                            {/* <hr width="200px" align='left'/> */}
+                            <Button type="primary" onClick={() => showModal(item.name)}>Добавить</Button>
+                            {/* <Button type="primary" className="addbtn" onClick={() => showModal(item.name)}>Добавить</Button> */}
                             {cardsItems.filter(card => card.props.type === item.name)}
                         </TabPane>
                     ))
@@ -162,9 +181,10 @@ export const DataForm = () => {
                     <Button key="back" onClick={handleCancel}>
                         Отменить
                     </Button>,
-                    <Button key="delete" type="link" danger onClick={handleDelete}>
-                        Удалить
-                    </Button>,
+                    deleteButton
+                    // <Button key="delete" type="link" danger onClick={handleDelete}>
+                    //     Удалить
+                    // </Button>,
                 ]}
             >
                 <Forma
@@ -177,6 +197,7 @@ export const DataForm = () => {
                     }}
                 ></Forma>
             </Modal>
+            <h2 className="heading">Расчеты</h2>
             <Result cards={cards}/>
             {/* <p>{() => clientsSum(cards)}</p> */}
         </>

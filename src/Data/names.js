@@ -4,14 +4,16 @@ export const names = {
         vcost: 'vcost',
         kpi: 'kpi',
         product: 'product',
-        traffic: 'traffic'
+        traffic: 'traffic',
+        sells: 'sells'
     },
     titles: {
         pcost: 'Постоянные расходы',
         vcost: 'vcost',
         kpi: 'kpi',
         product: 'product',
-        traffic: 'traffic'  
+        traffic: 'traffic',
+        sells: 'Холодные продажи'
     },
     kpi: {
         c1: 'Единая конверсия в покупку',
@@ -38,7 +40,8 @@ export const names = {
         revenueperclient: 'Средняя выручка на клиента',
         cogsperclient: 'Переменные затраты на клиента',
         arpc: 'Средняя доходность на клиента',
-        arpu: 'Средняя доходность на пользователя'
+        arpu: 'Средняя доходность на пользователя',
+        pcostsum: 'Постоянные расходы'
 
     }
 } 

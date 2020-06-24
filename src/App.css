@@ -1,7 +1,8 @@
 body {
-  /* max-width: 1200px;
-  margin: 100px auto; */
+  max-width: 1000px;
+  margin: 0 auto;
   overflow-y: visible !important;
+  background-image: linear-gradient(to top, #cfd9df 0%, #e2ebf0 100%);
 }
 
 /* .App {
@@ -9,16 +10,18 @@ body {
   grid-template-columns: 1fr 1fr;
 } */
 
+.wrapper {
+  /* display: grid;
+  grid-template-columns: 1fr 1fr; */
+  padding: 30px;
+  /* background-image: linear-gradient(to top, #cfd9df 0%, #e2ebf0 100%); */
+}
+
 .ant-modal-footer {
   text-align: left;
 }
 
-.ant-tabs-nav {
-  background-color: #ebebeb;
-  /* height: 100vh; */
-  width: 200px;
-  padding-top: 47px;
-}
+
 
 .menu {
   height: 60px;  
@@ -28,15 +31,48 @@ body {
   margin-right: 20px;
 }
 
+.ant-tabs-tabpane {
+  /* display: grid;
+  grid-gap: 20px; */
+  /* grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); */
+  /* grid-template-columns: repeat(auto-fill, minmax(150px, 300px));
+   */
+
+   display: flex;
+   flex-wrap: wrap;
+
+}
+
+.ant-card {
+  min-width: 300px;
+  margin-right: 20px;
+  margin-bottom: 20px;
+}
+
 .ant-card-body span {
   margin-right: 15px;
 }
 
-.wrapper {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+
+
+
+
+.minus {
+  color: red;
+  font-weight: 700;
 }
 
-.results {
-  padding: 20px 50px;
+.ant-alert-error {
+  width: 100%;
+}
+
+.heading {
+  margin-top: 30px;
+}
+
+.addbtn {
+  height: 85px;
+  width: 300px;
+  background-color: white;
+  color: black;
 }
